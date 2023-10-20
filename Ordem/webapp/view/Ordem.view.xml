@@ -1,0 +1,83 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:table="sap.ui.table" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="br.com.ordem.Ordem.controller.Ordem">
+	<App>
+		<pages>
+			<Page title="Dados das ordens por cliente">
+				<content>
+					<ComboBox xmlns="sap.m" id="box0" items="{ path: '/Customers' }" placeholder="Selecione Cliente" selectionChange="onPush" change="onChange">
+						<core:Item xmlns:core="sap.ui.core" text="{CompanyName}" key="{CustomerID}"/>
+					</ComboBox>
+					<Label text="" width="100%" id="label0_1593741369277"/>
+					<Label text="" width="130%" id="label0_1593741369278"/>
+					<Label text="" width="100%" id="label0_1593741369276"/>
+					<Table id="table0" items="{path:'/Orders',sorter:[{path:'CustomerID',descending:false}]}">
+						<items>
+							<ColumnListItem type="Active" id="item3" press="orderPress">
+								<cells>
+									<Text xmlns="sap.m" text="{OrderID}" id="text3"/>
+									<Text xmlns="sap.m" text="{path: 'OrderDate', type: 'sap.ui.model.odata.type.Date', formatOptions: {pattern: 'dd/MM/yyyy'}}" id="text4"/>
+									<Text xmlns="sap.m" text="{path: 'RequiredDate', type: 'sap.ui.model.odata.type.Date', formatOptions: {pattern: 'dd/MM/yyyy'}}" id="text5"/>
+									<Text xmlns="sap.m" text="{path: 'ShippedDate', type: 'sap.ui.model.odata.type.Date', formatOptions: {pattern: 'dd/MM/yyyy'}}" id="text6"/>
+									<ObjectNumber xmlns="sap.m" number="{parts:[{path:'Freight'},''], type:'sap.ui.model.type.Currency',&#10;formatOptions:{showMeasure:false}}" unit="BRL" id="number0" textAlign="Right"/>
+									<Text xmlns="sap.m" text="{ShipName}" id="text9"/>
+									<Text xmlns="sap.m" text="{ShipCity}" id="text7"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+						<columns>
+							<Column id="column0">
+								<header>
+									<Label text="Ordem" id="label0"/>
+								</header>
+							</Column>
+							<Column id="column1">
+								<header>
+									<Label text="Data da ordem" id="label1"/>
+								</header>
+							</Column>
+							<Column id="column2">
+								<header>
+									<Label text="Data estimada" id="label2"/>
+								</header>
+							</Column>
+							<Column id="column0_1591841402080">
+								<header>
+									<Text text="Data de embarque" id="text13"/>
+								</header>
+							</Column>
+							<Column id="column1_1591842228877">
+								<header>
+									<Text text="Frete" id="text14"/>
+								</header>
+							</Column>
+							<Column id="column2_1591842482244">
+								<header>
+									<Text text="Nome do navio" id="text15"/>
+								</header>
+							</Column>
+							<Column id="column3">
+								<header>
+									<Text text="Cidade do navio" id="text16"/>
+								</header>
+							</Column>
+						</columns>
+						<headerToolbar>
+							<Toolbar width="100%" id="toolbar1">
+								<content>
+									<SearchField xmlns="sap.m" placeholder="Busca por navio..." id="field0" width="25%" search="onFilter"/>
+									<ToolbarSpacer id="spacer0"/>
+									<Label text="Classificar" width="7%" id="label0_1590195472682"/>
+									<Select xmlns="sap.m" id="select0" change="HandleGroup">
+										<items>
+											<core:Item xmlns:core="sap.ui.core" key="Nenhum" text="Nenhum" id="item0_1590195499361"/>
+											<core:Item xmlns:core="sap.ui.core" key="Freight" text="Preço" id="item1"/>
+										</items>
+									</Select>
+								</content>
+							</Toolbar>
+						</headerToolbar>
+					</Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
